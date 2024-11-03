@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        #container{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url("./bacground.jpg");
+            background-repeat: repeat;
+            background-size: cover;
+           
+        }
+        form{
+            border: 2px solid;
+            height: 70vh;
+            width: 35vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 1px 1px 5px 5px  ;
+        }
+        #name,#contact,#course,#batch{
+            border: 2px solid;
+            height: 5vh;
+            width: 20vw;
+            border-radius: 5px;
+            background-color: transparent;
+            box-shadow: 5px 5px ;
+            /* color:rgb(226, 230, 236); */
+        }
+        #generator{
+            border:2px solid;
+            height: 5vh;
+            border-radius: 20px;
+        }
+        #photo{
+            border: 2px solid;
+            /* width: 10vw; */
+        }
+        #name:hover{
+            
+            background-color:rgb(199, 235, 241);
+        }
+        #contact:hover{
+            background-color:rgb(199, 235, 241);
+        }
+        #course:hover{
+            background-color:rgb(199, 235, 241);
+        }
+        #batch:hover{
+            background-color:rgb(199, 235, 241);
+        }
+        #photo{
+            box-shadow: 2px 2px;
+        }
+        #generator{
+            box-shadow: 3px 3px; 
+
+        }
+       
+
+
+    </style>
+</head>
+<body>
+    <!-- .files: This property returns a FileList object representing the files selected by the user. If the input allows multiple file selections, this list can contain more than one file.
+
+[0]: This accesses the first file in the FileList. If no files have been selected, this will be undefined. -->
+    <div id="container">
+    <h1>ID Card Generator</h1>
+    <form action="" id="form">
+        <input type="text" id="name" placeholder="Enter your full name" required>
+        <input type="text" id="contact" placeholder="Enter ypur mobile nimber" required>
+        <input type="text" id="course" placeholder="Enter your course name" required>
+        <input type="text" id="batch" placeholder="Batch no" required>
+        <input type="file" id="photo" accept="image/*"><br>
+        <input type="submit" value="Generate ID Card" id="generator">
+    </form>
+</div>
+
+    <script>
+        let form=document.getElementById("form")
+        form.addEventListener("submit",function(){
+            event.preventDefault()
+
+            let name=document.getElementById("name").value;
+            let contact=document.getElementById("contact").value;
+            let course=document.getElementById("course").value;
+            let batch=document.getElementById("batch").value;
+            let photo=document.getElementById("photo").files[0];
+
+            
+
+            //Store data in local storage:
+
+            let data= new FileReader();
+            data.onload=function(e){
+                localStorage.setItem("idcarddata",JSON.stringify({
+                    name,
+                    contact,
+                    course,
+                    batch,
+                    photo:e.target.result
+                                   
+                }));
+
+            window.location.href="step2.html"
+            }
+            data.readAsDataURL(photo)
+
+    
+            // console.log(data)   
+        })
+    </script>
+</body>
+</html>

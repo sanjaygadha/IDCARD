@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        #mainconatiner{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://cdn.wallpapersafari.com/15/1/muw4AE.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #id-card{
+            border: 5px solid;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            height: 60vh;
+            width: 23vw;
+            padding: 10px;
+        }
+        #logo{
+            height: 80px;
+            width: 80px;
+            border-radius: 50px;
+            /* border: 2px solid; */
+        }
+    #photo{
+        margin-left: 30%;
+        height: 120px;
+        width: 120px;
+        border: 2px solid;
+        border-radius: 5px;
+
+    }
+    #namee,#contact,#course,#batch{
+        padding-left:7%;
+    }
+    </style>
+</head>
+<body>
+    <div id="mainconatiner">
+    <h1>ID Card</h1>
+    <div id="id-card">
+        <img src="https://media.licdn.com/dms/image/v2/D4D0BAQGg7K-Vl5V41g/company-logo_200_200/company-logo_200_200/0/1724823283853/10000_coders_logo?e=2147483647&v=beta&t=jlQf-9A9QrvIBeGxE_I61IWbQex-aAqd9Ek4ytVnKDQ" alt="logo" id="logo"><br>
+        <img  src="" id="photo" alt="image" >
+        <p id="namee"></p>
+        <p id="contact"></p>
+        <p id="course"> </p>
+        <p id="batch"> </p>
+    </div>
+</div>
+    
+
+    <script>
+        //Retrive data from local strorage
+        
+        let carddata=JSON.parse(localStorage.getItem("idcarddata"));
+
+        if(carddata){
+            let name=document.getElementById("namee");
+            namee.innerHTML= "<b style=font-size:large>Name : </b>" +carddata.name;
+            let contact=document.getElementById("contact");
+            contact.innerHTML= "<b style=font-size:large>Contact : </b>"+ carddata.contact;
+            let course=document.getElementById("course");
+            course.innerHTML="<b style=font-size:large>Course : </b>"+  carddata.course;
+            let batch=document.getElementById("batch");
+            batch.innerHTML="<b style=font-size:large>Batch : </b>"+carddata.batch;
+            let photo=document.getElementById("photo");
+            photo.src=carddata.photo;
+        }
+            else {
+        // Handle case where no data is found
+        document.body.innerHTML = '<p>No ID card data available.</p>';
+    }
+        
+    </script>
+</body>
+</html>
